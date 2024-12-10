@@ -1,0 +1,177 @@
+#default docker test run
+
+docker pull hello world - docker UI image will created 
+
+# look images list in CMD
+
+docker images 
+
+# To run the created image
+
+docker run hello-world -- container will created 
+
+##In docker UI run the created image -- it run and the result will be viewed in UI-log
+
+#To check the container status 
+
+docker ps
+
+# to check the exited run container's
+
+docker ps -a
+
+
+To create simple container:
+--To create the docker image and run to create a container 
+--Create a foler and in VSC create docker file with name : Dockerfile
+--Create lite wait lunix 
+
+#use a base image - Dockerhub.com
+FROM apline:latest
+#Run a command
+CMD["echo","Welcome to friday"]
+
+Open VSC Terminal
+
+#To create a image
+docker build -t myimage.   --(User need to provide the image name )
+
+--In docker UI the image is created as per the user defined image name
+
+# Run the image 
+
+docker run myimage   -- out put can see in the VSC-Terminal and  this will create a container  
+
+#Node : to use node.js in docker file 
+-need to pull the node js image from docker hub
+
+#To  pull the node image 
+
+docker pull node
+
+Output: node image pulled from dockerhub 
+--check the docker ui  node image is created 
+---To check in CMD 
+
+docker images 
+
+Output:
+---it list all the images  
+
+# To run the image -node
+
+docker run node   -- container will created 
+
+# To start the container 
+
+docker start (container name/id ) --- 
+
+Output: it exit beacuse no program is run or used in the container 
+To use the node in the container - we need to connect the container to the command then execution remains untill you stop the container 
+
+docker run -it node ---(-it) will connect 
+
+                         -i : interactive 
+			 -t : TTY
+
+Output : Termial will open 
+         let  a= 1;
+	 let b=2;
+	console.log(a+b)
+	output: 3
+ ----open CMD check docker : docker ps ---runing image will display
+
+#To Stop
+
+docker stop (container name /id)
+ ----In UI that container state :exited
+
+# To Start the container
+
+docker start (container name/id)
+
+----container will start but it wont open termianal 
+---- to use the command in side the container 
+
+docker exec -it (Container name/id) node(image name ) -----To open the terminal the container 
+
+
+# To open bash  in the container 
+
+docker start (conatiner name /id) 
+
+docker exec -it (contianer name/id) /bin/bash 
+
+out put: 
+
+# ls
+#cd/usr/local/bin# 
+#ls
+
+       Output: node willbe there
+
+#To Tage Container Name
+
+docker run --name node_new_name  node  ---- a container will created in the name what user give : node_new_name
+
+docker rename node_new_name node_rename 
+
+#To delete container 
+
+docker container prune  -- it will delete all the container which is not running 
+
+output : need to give yes/no
+
+#To copy file to container 
+
+docker pull alpine
+
+docker run -it --name my_apline_container alpine
+
+output:
+#ls
+
+open new command 
+
+Go to the folder path 
+
+  : dir -- will show file 
+
+# to copy file to the docker 
+
+docker cp .\testfld.txt my_alpine_container:/example.txt -- it copy in the lunix 
+
+docker cp .\testfld.txt my_alpine_container:/example.txt -- its copy to the folder inside the lunix
+
+Output:
+#ls
+# cd/var
+# cat example.txt
+
+#To copy file form the container 
+
+docker cp my_alpine_container:/example.txt ./example1.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
